@@ -16,6 +16,7 @@ package clips {
 		public function MethodClip() {
 			super();
 			instance = this;
+			Main.methodClip = this;
 			
 			newMethod_btn.addEventListener(MouseEvent.CLICK, onMouseClick);
 		}

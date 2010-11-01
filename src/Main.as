@@ -1,4 +1,7 @@
 package {
+	import clips.MethodClip;
+	import clips.PropertyClip;
+	
 	import fl.containers.ScrollPane;
 	import fl.controls.ComboBox;
 	import fl.controls.TextInput;
@@ -14,6 +17,10 @@ package {
 		
 		private static var currentFilterableTextInput:TextInput;
 		public static var scrollPane:ScrollPane;
+		
+		public static var propertyClip:PropertyClip;
+		public static var methodClip:MethodClip;
+		public static var mainDisplay:MainDisplay;
 		
 		public function Main() {
 			super();

@@ -19,6 +19,7 @@ package clips {
 		public function PropertyClip() {
 			super();
 			instance = this;
+			Main.propertyClip = this;
 			
 			newProperty_btn.addEventListener(MouseEvent.CLICK, onMouseClick);
 		}
