@@ -7,11 +7,43 @@
 
   <filename>flubble-as3</filename>
 
-  <description/>
+  <description>Flubble AS3 is an Adobe AIR port of the Android Flubble application, which allows you to quickly create ActionScript 3 class file templates and stubs without having to do all of the typing in your editor.</description>
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
 
   <!-- To localize the description, use the following format for the description element.<description><text xml:lang="en">English App description goes here</text><text xml:lang="fr">French App description goes here</text><text xml:lang="ja">Japanese App description goes here</text></description>-->
 
-  <name>flubble-as3</name>
+  <name>Flubble AS3</name>
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
 
   <!-- To localize the name, use the following format for the name element.<name><text xml:lang="en">English App name goes here</text><text xml:lang="fr">French App name goes here</text><text xml:lang="ja">Japanese App name goes here</text></name>-->
 
@@ -35,5 +67,13 @@
   <customUpdateUI>false</customUpdateUI>
 
   <allowBrowserInvocation>false</allowBrowserInvocation>
+
+
+
+
+
+
+
+
 
 </application>

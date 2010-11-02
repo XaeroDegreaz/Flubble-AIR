@@ -10,6 +10,7 @@ package storage {
 	import flash.events.*;
 	import flash.filesystem.*;
 	import flash.net.*;
+	import flash.utils.Dictionary;
 	
 	public class Save {
 		
@@ -46,16 +47,16 @@ package storage {
 			
 			out += "</file>";
 			
-			var asXML:XML = XML(out);
-			
-			trace(asXML.toXMLString());
-			
+			trace(XML(out).toXMLString());
+			save(XML(out).toXMLString(), "xml");
 		}
 		
 		public static function AsAS3()	{
 			trace("**** OUTPUTTING ACTIONSCRIPT 3 CLASS FILE ****\n");
 			var out:String = "package "+Main.mainDisplay.packageName_txt.text+" {\n\n";
+			
 			//# Import line loops should go here later...
+			out += removeDuplicateImports().join("")+"\n";
 			
 			//# Check for super class
 			var extendsLine:String = "";
@@ -63,7 +64,7 @@ package storage {
 				extendsLine = "extends "+Main.mainDisplay.superClass_txt.text+" ";
 			}
 			
-			out += "\t"+Main.mainDisplay.visibility_mc.selectedItem.data+" class "+Main.mainDisplay.className_txt.text+" "+extendsLine+"{\n\n";
+			out += "\t"+Main.mainDisplay.visibility_mc.selectedItem.data+" class"+Main.mainDisplay.className_txt.text+" "+extendsLine+"{\n\n";
 			
 			//# Class properties..
 			//# Loop through class properties...
@@ -104,11 +105,38 @@ package storage {
 			out += "}";
 			
 			
-			trace(out);			
+			trace(out);	
+			save(out, "as");
 		}
 		
 		private static function save(data:*, type:String):void {
+			//# Initialize the config, just in case they decided not to save it before...
+			Config.initialize();
 			
+			var packageDirs:String = String(Main.mainDisplay.packageName_txt.text).split(".").join("/");
+			var className:String = String(Main.mainDisplay.className_txt.text);
+			
+			var file:File = new File(Config[type+"SaveDir"].nativePath+"/"+packageDirs+"/"+className+"."+type);
+			var fs:FileStream = new FileStream();
+			
+			fs.open(file, FileMode.WRITE);
+			fs.writeUTFBytes(data);
+			fs.close();
+			
+		}
+		
+		private static function removeDuplicateImports():Array {
+			var testArray:Array = new Array();
+			var out:Array = new Array();
+			
+			for each(var importItem:String in Main.imports) {
+				if(!testArray[importItem]) {
+					testArray[importItem] = true;
+					out.push("\timport "+importItem+".*;\n");
+				}
+			}
+			
+			return out;
 		}
 		
 	}

@@ -8,7 +8,7 @@ package storage {
 	public class Config {
 		
 		public static var baseDir:File;
-		public static var as3SaveDir:File;
+		public static var asSaveDir:File;
 		public static var xmlSaveDir:File;
 		public static var jsonSaveDir:File;
 		private static var configXML:XML;
@@ -50,8 +50,8 @@ package storage {
 				baseDir = new File(configXML.baseSaveDir+"/Flubble-AS3");
 				baseDir.createDirectory();
 				
-				as3SaveDir = new File(baseDir.nativePath+"/AS3");
-				as3SaveDir.createDirectory();
+				asSaveDir = new File(baseDir.nativePath+"/AS3");
+				asSaveDir.createDirectory();
 				
 				xmlSaveDir = new File(baseDir.nativePath+"/XML");
 				xmlSaveDir.createDirectory();
@@ -71,8 +71,8 @@ package storage {
 			baseDir = new File(selectedFolder.nativePath+"/Flubble-AS3");
 			baseDir.createDirectory();
 			
-			as3SaveDir = new File(baseDir.nativePath+"/AS3");
-			as3SaveDir.createDirectory();
+			asSaveDir = new File(baseDir.nativePath+"/AS3");
+			asSaveDir.createDirectory();
 			
 			xmlSaveDir = new File(baseDir.nativePath+"/XML");
 			xmlSaveDir.createDirectory();

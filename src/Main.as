@@ -9,12 +9,19 @@ package {
 	import flash.display.MovieClip;
 	import flash.events.*;
 	import flash.net.*;
+	import flash.net.dns.AAAARecord;
 	import flash.ui.Keyboard;
+	
 	import storage.*;
 	
 	public class Main extends MovieClip	{
 		public static var classes:XML;
+		//# Base AS3 classes are stored in this array...
 		public static var classArray:Array = new Array();
+		//# Perhaps add another array for custom classed that have been created with Flubble?
+		// public static var customClassArray:Array = new Array();
+		
+		public static var imports:Array = new Array();
 		
 		private static var currentFilterableTextInput:TextInput;
 		public static var scrollPane:ScrollPane;
@@ -31,6 +38,8 @@ package {
 			
 			var loader:URLLoader = new URLLoader();
 			var request:URLRequest = new URLRequest("allClasses.xml");
+			
+			//# TODO, add another request for custom classes created with Flubble.
 			
 			loader.addEventListener(Event.COMPLETE, onClassesLoadComplete);			
 			loader.load(request);
@@ -67,7 +76,14 @@ package {
 			
 			//# Retrieve filtered class names
 			currentFilterableTextInput = e.currentTarget;
-			filterArray = filterArray.filter(filterClasses);	
+			
+			//# Filter through all of the default AS3 classes first..
+			filterArray = filterArray.filter(filterClasses);
+			
+			//# Filter through our custom array of classes that have been created with Flubble
+			if(filterArray.length == 0) {
+				//# Todo, create filter for custom classes...
+			}
 			
 			//# Get a marker for current text in the text input.
 			var begin:int = e.currentTarget.length;					
@@ -78,10 +94,15 @@ package {
 				//# Create a selection so the user can continue to type.
 				e.currentTarget.setSelection(begin, e.currentTarget.length);
 				
+				//# Add or remove an import line
+				imports[e.currentTarget.name] = filterArray[0].packageName;
+				
 				//# If this is a base class, we set the combobox to reflect it, for later comparison when saving our class.
 				//var index:int = classArray.indexOf(filterArray[0]);
 				//ComboBox(classes_mc).selectedIndex = index;
-			}		
+			}else {
+				imports[e.currentTarget.name] = null;
+			}
 			
 		}
 		
