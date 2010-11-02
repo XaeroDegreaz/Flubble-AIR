@@ -1,10 +1,14 @@
 package storage {
 	import clips.*;
 	
+	import com.adobe.air.filesystem.FileUtil;
+	import com.adobe.serialization.json.*;
+	
 	import fl.controls.ComboBox;
 	
 	import flash.display.*;
 	import flash.events.*;
+	import flash.filesystem.*;
 	import flash.net.*;
 	
 	public class Save {
@@ -101,6 +105,10 @@ package storage {
 			
 			
 			trace(out);			
+		}
+		
+		private static function save(data:*, type:String):void {
+			
 		}
 		
 	}

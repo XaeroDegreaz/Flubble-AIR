@@ -10,6 +10,7 @@ package {
 	import flash.events.*;
 	import flash.net.*;
 	import flash.ui.Keyboard;
+	import storage.*;
 	
 	public class Main extends MovieClip	{
 		public static var classes:XML;
@@ -24,6 +25,8 @@ package {
 		
 		public function Main() {
 			super();
+			Config.initialize();
+			
 			scrollPane = scrollPane_mc;
 			
 			var loader:URLLoader = new URLLoader();
