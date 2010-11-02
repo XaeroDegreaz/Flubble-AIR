@@ -61,10 +61,10 @@ package storage {
 			//# Check for super class
 			var extendsLine:String = "";
 			if(Main.mainDisplay.superClass_txt.text != "") {
-				extendsLine = "extends "+Main.mainDisplay.superClass_txt.text+" ";
+				extendsLine = " extends "+Main.mainDisplay.superClass_txt.text+"";
 			}
 			
-			out += "\t"+Main.mainDisplay.visibility_mc.selectedItem.data+" class"+Main.mainDisplay.className_txt.text+" "+extendsLine+"{\n\n";
+			out += "\t"+Main.mainDisplay.visibility_mc.selectedItem.data+" class "+Main.mainDisplay.className_txt.text+""+extendsLine+" {\n\n";
 			
 			//# Class properties..
 			//# Loop through class properties...
