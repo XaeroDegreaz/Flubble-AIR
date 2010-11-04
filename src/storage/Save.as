@@ -130,7 +130,7 @@ package storage {
 			var out:Array = new Array();
 			
 			for each(var importItem:String in Main.imports) {
-				if(!testArray[importItem]) {
+				if(!testArray[importItem] && importItem != "" && importItem != null) {
 					testArray[importItem] = true;
 					out.push("\timport "+importItem+".*;\n");
 				}

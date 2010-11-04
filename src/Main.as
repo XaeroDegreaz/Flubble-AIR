@@ -30,9 +30,12 @@ package {
 		public static var methodClip:MethodClip;
 		public static var mainDisplay:MainDisplay;
 		
+		public static var instance:Main;
+		
 		public function Main() {
 			super();
 			Config.initialize();
+			instance = this;
 			
 			scrollPane = scrollPane_mc;
 			
@@ -58,6 +61,9 @@ package {
 		}
 		
 		public static function startClassFilter(e:KeyboardEvent):void {
+			//# Update the display to display the character in the box as quickly as possible for fast typers.....
+			e.updateAfterEvent();
+				
 			//# This variable controls whether or not to begin a selection while typing..
 			var resetSelection:Boolean = false;
 			
