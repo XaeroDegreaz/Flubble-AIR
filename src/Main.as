@@ -12,6 +12,8 @@ package {
 	import flash.net.dns.AAAARecord;
 	import flash.ui.Keyboard;
 	
+	import menu.CustomMenu;
+	
 	import storage.*;
 	
 	public class Main extends MovieClip	{
@@ -34,6 +36,7 @@ package {
 		
 		public function Main() {
 			super();
+			this.stage.nativeWindow.menu = new CustomMenu();
 			Config.initialize();
 			instance = this;
 			

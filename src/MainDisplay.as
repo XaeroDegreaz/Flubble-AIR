@@ -18,11 +18,11 @@ package {
 		}
 		
 		private function onRenderXMLClick(e:MouseEvent):void {
-			Save.AsXML();
+			Save.save( Save.AsXML() );
 		}
 		
 		private function onRenderAS3Click(e:MouseEvent):void {
-			Save.AsAS3();
+			Save.save( Save.AsAS3() );
 		}
 		
 	}

@@ -14,7 +14,7 @@ package storage {
 	
 	public class Save {
 		
-		public static function AsXML()	{
+		public static function AsXML():Object	{
 			trace("**** OUTPUTTING XML FORMATTED CLASS INFORMATION ****\n");
 			var out:String = "<?out version='1.0' encoding='UTF-8'?>";
 			out += "<file>";
@@ -48,10 +48,10 @@ package storage {
 			out += "</file>";
 			
 			trace(XML(out).toXMLString());
-			save(XML(out).toXMLString(), "xml");
+			return {data: XML(out).toXMLString(), type:"xml"};
 		}
 		
-		public static function AsAS3()	{
+		public static function AsAS3():Object	{
 			trace("**** OUTPUTTING ACTIONSCRIPT 3 CLASS FILE ****\n");
 			var out:String = "package "+Main.mainDisplay.packageName_txt.text+" {\n\n";
 			
@@ -106,21 +106,21 @@ package storage {
 			
 			
 			trace(out);	
-			save(out, "as");
+			return {data: out, type:"as"};
 		}
 		
-		private static function save(data:*, type:String):void {
+		public static function save(saveData:Object):void {
 			//# Initialize the config, just in case they decided not to save it before...
 			Config.initialize();
 			
 			var packageDirs:String = String(Main.mainDisplay.packageName_txt.text).split(".").join("/");
 			var className:String = String(Main.mainDisplay.className_txt.text);
 			
-			var file:File = new File(Config[type+"SaveDir"].nativePath+"/"+packageDirs+"/"+className+"."+type);
+			var file:File = new File(Config[saveData.type+"SaveDir"].nativePath+"/"+packageDirs+"/"+className+"."+saveData.type);
 			var fs:FileStream = new FileStream();
 			
 			fs.open(file, FileMode.WRITE);
-			fs.writeUTFBytes(data);
+			fs.writeUTFBytes(saveData.data);
 			fs.close();
 			
 		}
