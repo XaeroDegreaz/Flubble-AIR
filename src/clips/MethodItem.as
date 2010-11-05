@@ -21,6 +21,12 @@ package clips {
 			newParam_btn.addEventListener(MouseEvent.CLICK, onMouseClick);
 			remove_btn.addEventListener(MouseEvent.CLICK, onRemoveBtnClick);
 			returnType_txt.addEventListener(KeyboardEvent.KEY_UP, Main.startClassFilter);
+			
+			methodName_txt.addEventListener(MouseEvent.MOUSE_DOWN, function(e:Event):void {
+				if(methodName_txt.text = "_methodName_txt") {
+					methodName_txt.text = "";
+				}
+			});
 		}
 		
 		private function onMouseClick(e:MouseEvent):void {

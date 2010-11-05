@@ -12,6 +12,8 @@ package storage {
 	import flash.net.*;
 	import flash.utils.Dictionary;
 	
+	import utils.*;
+	
 	public class Save {
 		
 		public static function AsXML():Object	{
@@ -123,6 +125,7 @@ package storage {
 			fs.writeUTFBytes(saveData.data);
 			fs.close();
 			
+			Main.instance.addChild( new Toast("Save completed!") );
 		}
 		
 		private static function removeDuplicateImports():Array {

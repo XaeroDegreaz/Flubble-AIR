@@ -1,10 +1,12 @@
 package menu {
+	import flash.desktop.*;
 	import flash.display.*;
 	import flash.display.NativeMenu;
 	import flash.events.*;
 	import flash.net.*;
 	
 	import storage.*;
+	import utils.*;
 	
 	public class CustomMenu extends NativeMenu {
 		
@@ -39,6 +41,8 @@ package menu {
 			var tools_pastebin_xml:NativeMenuItem = tools_pastebin.submenu.addItem( new NativeMenuItem("XML") );
 			tools_pastebin_xml.name = "XML";
 			
+			file_save_as3.addEventListener(Event.SELECT, onSaveSelect);
+			file_save_xml.addEventListener(Event.SELECT, onSaveSelect);
 			tools_pastebin_xml.addEventListener(Event.SELECT, onPastebinSelect);
 			tools_pastebin_as3.addEventListener(Event.SELECT, onPastebinSelect);
 		}
@@ -57,9 +61,14 @@ package menu {
 			loader.addEventListener(Event.COMPLETE, onComplete);
 			loader.load(request);
 			
-			function onComplete(ev:Event) {
-				trace(ev.target.data);
+			function onComplete(ev:Event) {				
+				Clipboard.generalClipboard.setData(ClipboardFormats.TEXT_FORMAT, ev.target.data);				
+				Main.instance.addChild( new Toast("Pastebin URL copied to clipboard!", 10) );
 			}
+		}
+		
+		private function onSaveSelect(e:Event):void {
+			Save.save( Save["As"+e.target.label]() );
 		}
 		
 	}

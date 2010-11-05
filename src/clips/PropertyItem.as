@@ -11,6 +11,19 @@ package clips {
 			
 			remove_btn.addEventListener(MouseEvent.CLICK, onMouseClick);
 			propertyType_txt.addEventListener(KeyboardEvent.KEY_UP, Main.startClassFilter);
+			
+			propertyType_txt.addEventListener(MouseEvent.MOUSE_DOWN, function(e:Event):void {
+				if(propertyType_txt.text = "_propertyType") {
+					propertyType_txt.text = "";
+				}
+			});
+			
+			propertyName_txt.addEventListener(MouseEvent.MOUSE_DOWN, function(e:Event):void {
+				if(propertyName_txt.text = "_propertyName") {
+					propertyName_txt.text = "";
+				}
+			});
+			
 		}
 		
 		private function onMouseClick(e:MouseEvent):void {
